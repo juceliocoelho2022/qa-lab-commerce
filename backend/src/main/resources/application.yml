@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: qa-lab-api
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:qalab;MODE=PostgreSQL;DB_CLOSE_DELAY=-1}
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+qa-lab:
+  jwt-secret: ${JWT_SECRET:qa-lab-secret-key-change-in-production-2026}
+  bugs:
+    allow-negative-stock: ${LAB_BUG_ALLOW_NEGATIVE_STOCK:false}
+
+server:
+  port: ${SERVER_PORT:8080}

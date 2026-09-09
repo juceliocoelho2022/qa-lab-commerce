@@ -1,0 +1,14 @@
+name: OWASP ZAP Baseline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zap-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose up -d --build
+      - run: curl --fail --retry 30 --retry-delay 3 --retry-all-errors http://localhost:3000
+      - name: Passive security scan
+        run: docker run --network host -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -I

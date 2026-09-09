@@ -1,0 +1,26 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #eaf2ff; background: #07111f; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at top right, #12335d, #07111f 45%); }
+main { width: min(1120px, 92%); margin: 0 auto; padding: 54px 0 80px; }
+header { max-width: 720px; margin-bottom: 38px; }
+h1 { font-size: clamp(2.6rem, 7vw, 5.3rem); line-height: .96; margin: 14px 0; letter-spacing: -.06em; }
+h2 { margin-top: 0; }
+p { color: #a9bad0; }
+.badge { color: #61dafb; background: #102943; border: 1px solid #1e5377; padding: 7px 12px; border-radius: 99px; font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+.panel { display: flex; justify-content: space-between; gap: 28px; align-items: center; padding: 26px; margin: 22px 0 38px; background: rgba(14, 31, 51, .82); border: 1px solid #1f3c5b; border-radius: 18px; box-shadow: 0 18px 60px #02081166; }
+form { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; }
+label { display: grid; gap: 6px; color: #a9bad0; font-size: .83rem; }
+input { border: 1px solid #31516f; border-radius: 9px; background: #081421; color: white; padding: 11px 12px; min-width: 200px; }
+button { border: 0; border-radius: 9px; padding: 12px 16px; color: #03111d; background: #61dafb; font-weight: 800; cursor: pointer; }
+button:hover { filter: brightness(1.08); }
+button:disabled { opacity: .38; cursor: not-allowed; }
+button.secondary { background: transparent; color: #ffb7c4; border: 1px solid #ff6683; }
+.status { margin: -18px 0 34px; padding: 13px 16px; border-left: 4px solid #61dafb; background: #0d253a; border-radius: 4px 9px 9px 4px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.product-card { display: grid; gap: 12px; padding: 22px; border: 1px solid #1f3c5b; border-radius: 16px; background: linear-gradient(145deg, #10243a, #0a1827); }
+.product-card h3 { min-height: 48px; margin: 0; }
+.product-card strong { font-size: 1.35rem; color: #61dafb; }
+.product-card small, .sku { color: #8fa5bd; }
+.sku { font-size: .72rem; letter-spacing: .08em; }
+.payment-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 760px) { .panel { align-items: stretch; flex-direction: column; } form { align-items: stretch; flex-direction: column; } input { width: 100%; } }

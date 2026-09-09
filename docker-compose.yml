@@ -1,0 +1,43 @@
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: qalab
+      POSTGRES_USER: qalab
+      POSTGRES_PASSWORD: qalab123
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qalab -d qalab"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - qa_lab_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://database:5432/qalab
+      DB_USER: qalab
+      DB_PASSWORD: qalab123
+      JWT_SECRET: qa-lab-local-secret-key-at-least-32-bytes
+      LAB_BUG_ALLOW_NEGATIVE_STOCK: ${LAB_BUG_ALLOW_NEGATIVE_STOCK:-false}
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8080/api
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  qa_lab_data:

@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "QA Lab Commerce API",
+    "description": "Coleção de regressão da API QA Lab.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Login válido",
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('Status 200', () => pm.response.to.have.status(200));",
+        "pm.test('Retorna Bearer token', () => { const body = pm.response.json(); pm.expect(body.accessToken).to.be.a('string').and.not.empty; pm.environment.set('token', body.accessToken); });"
+      ] }}],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"qa.user@qalab.dev\",\n  \"password\": \"user123\"\n}" },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "02 - Login inválido",
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('Status 401', () => pm.response.to.have.status(401));",
+        "pm.test('Mensagem segura', () => pm.expect(pm.response.json().message).to.eql('Invalid email or password'));"
+      ] }}],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"qa.user@qalab.dev\",\n  \"password\": \"errada\"\n}" },
+        "url": "{{baseUrl}}/api/auth/login"
+      }
+    },
+    {
+      "name": "03 - Listar produtos",
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('Status 200', () => pm.response.to.have.status(200));",
+        "pm.test('Contrato do produto', () => { const p = pm.response.json()[0]; pm.expect(p).to.have.all.keys('id','name','sku','price','stock','active'); });"
+      ] }}],
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/products" }
+    },
+    {
+      "name": "04 - Criar pedido",
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('Status 201', () => pm.response.to.have.status(201));",
+        "pm.test('Total calculado pelo servidor', () => pm.expect(pm.response.json().total).to.be.above(0));",
+        "pm.environment.set('orderId', pm.response.json().id);"
+      ] }}],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }],
+        "body": { "mode": "raw", "raw": "{\n  \"items\": [{ \"productId\": 1, \"quantity\": 1 }]\n}" },
+        "url": "{{baseUrl}}/api/orders"
+      }
+    },
+    {
+      "name": "05 - Aprovar pagamento",
+      "event": [{ "listen": "test", "script": { "exec": [
+        "pm.test('Status 200', () => pm.response.to.have.status(200));",
+        "pm.test('Pedido pago', () => pm.expect(pm.response.json().status).to.eql('PAID'));"
+      ] }}],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" }],
+        "body": { "mode": "raw", "raw": "{\n  \"cardNumber\": \"4111111111111111\"\n}" },
+        "url": "{{baseUrl}}/api/orders/{{orderId}}/payment"
+      }
+    }
+  ]
+}
