@@ -43,6 +43,40 @@ flowchart TD
     T --> A
 ```
 
+## Telas do QA Lab Center
+
+Os protótipos abaixo apresentam a visão planejada para o **QA Lab Center**, um painel centralizado para acompanhar testes manuais, automações, defeitos, cobertura de código e indicadores de qualidade do projeto.
+
+### Dashboard de qualidade
+
+Reúne os principais indicadores do projeto: testes planejados, aprovados, reprovados e bloqueados, evolução das execuções, atividades recentes e cobertura do JaCoCo. A visão geral ajuda o time a identificar rapidamente riscos e mudanças na qualidade da aplicação.
+
+![Dashboard de qualidade do QA Lab Center](docs/images/dashboard-qualidade.jpg)
+
+### Execução de testes
+
+Permite executar um caso de teste passo a passo, validar pré-condições, registrar o resultado obtido e classificar cada etapa como aprovada, reprovada ou bloqueada. Também possibilita anexar evidências e abrir um bug diretamente durante a execução.
+
+![Tela de execução de testes do QA Lab Center](docs/images/execucao-testes.jpg)
+
+### Gestão de bugs
+
+Centraliza os defeitos encontrados e oferece filtros por severidade, prioridade, status e módulo. Cada bug possui descrição, passos para reprodução, resultado esperado, evidências, responsável e vínculo com o caso de teste que revelou o problema.
+
+![Tela de gestão de bugs do QA Lab Center](docs/images/gestao-bugs.jpg)
+
+### Automação de testes
+
+Acompanha as suítes automatizadas com JUnit, Postman/Newman, Playwright e k6, exibindo quantidade de testes, taxa de sucesso, duração e histórico de execuções. A tela também integra os resultados do pipeline CI e a cobertura de código gerada pelo JaCoCo.
+
+![Tela de automação de testes do QA Lab Center](docs/images/automacao-testes.jpg)
+
+### Relatórios de qualidade
+
+Consolida os resultados dos testes, bugs por severidade, evolução da cobertura JaCoCo e qualidade por módulo. Os filtros e as opções de exportação em CSV e PDF facilitam a apresentação de evidências e o acompanhamento da evolução do projeto.
+
+![Tela de relatórios de qualidade do QA Lab Center](docs/images/relatorios-qualidade.jpg)
+
 ## Como executar no Windows
 
 ### Opção recomendada — Docker Desktop
