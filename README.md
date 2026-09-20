@@ -4,6 +4,25 @@ Aplicação completa criada para estudar, executar e demonstrar **testes de soft
 
 > Projeto de portfólio de **Jucelio Farias Coelho**, direcionado a oportunidades de QA / Testes de Software Júnior.
 
+
+## Technical Snapshot
+
+| Focus | Evidence in this project |
+|---|---|
+| Target roles | QA Engineer · QA Automation · Software Test Engineer |
+| Backend under test | Java 21 · Spring Boot · Spring Security · JWT · JPA |
+| Unit & integration | JUnit 5 · Mockito · Spring Boot Test · Testcontainers |
+| API testing | REST Assured · Postman · Newman |
+| UI automation | Playwright · Vitest · Testing Library |
+| Performance & security | k6 · OWASP ZAP |
+| Quality pipeline | JaCoCo · GitHub Actions · Docker Compose |
+
+**Engineering highlights:** estratégia de testes em múltiplas camadas, automação de API e interface, testes de carga, análise de segurança, cobertura e evidências profissionais de qualidade.
+
+**Keywords:** `Software Testing` `QA Automation` `JUnit 5` `Mockito` `REST Assured` `Playwright` `Testcontainers` `k6` `OWASP ZAP` `JaCoCo` `CI/CD`
+
+---
+
 ## O que você pratica
 
 - Planejamento e execução de testes manuais;
